@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import Login from './components/LogIn.jsx'
 import Register from './components/Register.jsx'
 import Home from './components/Home.jsx'
+import TaskBoard from './components/TaskBoard.jsx' 
 
 // function App() {
 //   // const [count, setCount] = useState(0)
@@ -36,6 +37,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/taskboard" element={<TaskBoard />} />
       </Routes>
     </Router>
   );

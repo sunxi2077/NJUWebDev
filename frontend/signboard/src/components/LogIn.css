@@ -1,69 +1,76 @@
-/* src/components/Login.css */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #1c8899;
+/* 登录容器 */
+.login-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
+    background-color: var(--background-color);
 }
 
-.login-container {
-    background-color: #235e91;
+/* 登录表单 */
+.login-form {
+    background: #eeba52;
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
 }
 
-h2 {
+/* 表单标题 */
+.login-form h2 {
+    text-align: center;
     margin-bottom: 20px;
 }
 
+/* 输入框组 */
 .input-group {
     margin-bottom: 15px;
 }
 
-label {
+/* 标签 */
+.input-group label {
     display: block;
     margin-bottom: 5px;
+    font-weight: bold;
 }
 
-input {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
+/* 输入框 */
+.input-group input {
+    width: 90%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #e7ce2e;
+    color: black;
 }
 
-button {
+/* 登录按钮 */
+.login-button {
     width: 100%;
     padding: 10px;
     background-color: #007bff;
     border: none;
+    border-radius: 4px;
     color: white;
+    font-size: 16px;
     cursor: pointer;
 }
 
-button:hover {
+.login-button:hover {
     background-color: #0056b3;
 }
 
-p {
-    margin-top: 10px;
+/* 注册链接 */
+.register-link {
     text-align: center;
+    margin-top: 15px;
 }
 
-/* 默认浅色模式 */
-body {
-    background-color: white;
-    color: black;
+.register-link a {
+    color: #007bff;
+    text-decoration: none;
 }
 
-/* 深色模式 */
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: black;
-        color: white;
-    }
+.register-link a:hover {
+    text-decoration: underline;
 }

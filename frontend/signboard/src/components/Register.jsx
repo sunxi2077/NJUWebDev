@@ -1,52 +1,60 @@
-// src/components/Register.jsx
 import  { useState } from 'react';
 import './LogIn.css';
 
 const Register = () => {
-    const [newUsername, setNewUsername] = useState('');
-    const [newPassword, setNewPassword] = useState('');
-    
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
 
-    const handleRegister = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        console.log('新用户名:', newUsername);
-        console.log('新密码:', newPassword);
-        // 在此处添加注册逻辑，如发送请求到后端服务器进行注册
-        // 示例：假设注册成功后跳转到登录页面
-        // history.push('/');
-    };
-
-    const navigateToLogin = () => {
-        history.push('/');
+        if (password !== confirmPassword) {
+            alert('Passwords do not match!');
+            return;
+        }
+        // 在此处添加表单提交逻辑，例如通过 API 注册用户
+        console.log('Email:', email, 'Password:', password);
     };
 
     return (
         <div className="login-container">
-            <h2>用户注册</h2>
-            <form onSubmit={handleRegister}>
+            <form className="login-form" onSubmit={handleSubmit}>
+                <h2>Register</h2>
                 <div className="input-group">
-                    <label htmlFor="new-username">用户名</label>
+                    <label htmlFor="email">Email</label>
                     <input
-                        type="text"
-                        id="new-username"
-                        value={newUsername}
-                        onChange={(e) => setNewUsername(e.target.value)}
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         required
                     />
                 </div>
                 <div className="input-group">
-                    <label htmlFor="new-password">密码</label>
+                    <label htmlFor="password">Password</label>
                     <input
                         type="password"
-                        id="new-password"
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         required
                     />
                 </div>
-                <button type="submit">注册</button>
+                <div className="input-group">
+                    <label htmlFor="confirm-password">Confirm Password</label>
+                    <input
+                        type="password"
+                        id="confirm-password"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        required
+                    />
+                </div>
+                <button type="submit" className="login-button">Register</button>
+                <div className="register-link">
+                    Already have an account? <a href="/login">Log in here</a>
+                </div>
             </form>
-            <p>已有账号？<button onClick={navigateToLogin}>登录</button></p>
         </div>
     );
 };

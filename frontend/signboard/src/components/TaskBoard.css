@@ -1,0 +1,152 @@
+/* TaskBoard Container */
+.taskboard-container {
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: #242424;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+
+
+.nav-options button {
+    background-color: #265484;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-left: 20px;
+    cursor: pointer;
+    border-radius: 40px;
+}
+
+.nav-options button:hover {
+    background-color: #20456c;
+}
+
+/* Taskboard Content */
+.taskboard-content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: ;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+/* Add Column Section */
+.add-column {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+
+
+.add-column input {
+    flex-grow: 1;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    color: #333;
+}
+
+.add-column button {
+    padding: 10px 20px;
+    background-color: #265484;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+.add-column button:hover {
+    background-color: #20456c;
+}
+
+/* Columns */
+.columns {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+}
+
+.column {
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    width: 250px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.column-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #333;
+}
+
+.column-menu button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.column-menu button:hover {
+    color: red;
+}
+
+/* Tasks */
+.tasks {
+    margin-top: 10px;
+    flex-grow: 1;
+}
+
+.task {
+    background-color: #eee;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    color: #333;
+}
+
+:root {
+    --nav-color: #272626F5;
+    /* 设置默认颜色为深灰色 */
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --nav-color: #fff;
+        
+        /* 在浅色主题下，将颜色设置为白色 */
+    }
+    nav.navbar{
+        background-color: var(--nav-color);
+        color: #333;
+        
+    }
+}
+
+nav.navbar {
+    background-color: var(--nav-color);
+    color: #fff;
+    /* 使用 CSS 变量设置背景颜色 */
+}
+/*文字的颜色为黑色*/
