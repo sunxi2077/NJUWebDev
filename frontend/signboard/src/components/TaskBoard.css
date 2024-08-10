@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    
+
 }
 
 /* Navigation Bar */
@@ -22,7 +22,12 @@
     right: 0;
     z-index: 1000;
     border-bottom: 1px solid #fff;
-    
+}
+
+.navbar button {
+    border-radius: 40px;
+    margin: 10px;
+
 }
 
 /* Main Content Area */
@@ -58,6 +63,7 @@
     border-radius: 4px;
     margin-bottom: 5px;
     color: #e6bc24;
+    display: block;
 }
 
 .project-list li.active {
@@ -69,13 +75,14 @@
 /* Taskboard Content - Right Side */
 .taskboard-content {
     width: 87%;
-    padding: 20px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     position: fixed;
     right: 0;
-    height: 100%;
+    
+
 }
 
 .add-column {
@@ -103,7 +110,7 @@
 
 .add-column button:hover {
     background-color: #20456c;
-    
+
 }
 
 /* Columns */
@@ -111,6 +118,8 @@
     display: flex;
     gap: 20px;
     overflow-x: auto;
+    overflow-y: auto; /* 启用垂直滚动条 */
+    padding-right: 10px; /* 添加一些内边距，以便滚动条不会遮挡内容 */
 }
 
 .column {
@@ -140,13 +149,16 @@
 }
 
 .column-menu button:hover {
-    color: red;
+    color:red;
 }
 
 /* Tasks */
 .tasks {
     margin-top: 10px;
     flex-grow: 1;
+    max-height: 450px; /* 设置最大高度 */
+    overflow-y: auto; /* 启用垂直滚动 */
+    padding-right: 10px; /* 防止滚动条遮挡内容 */
 }
 
 .task {
@@ -167,8 +179,171 @@
     :root {
         --nav-color: #fff;
     }
+
     nav.navbar {
         background-color: var(--nav-color);
         color: #333;
     }
+}
+
+.add-project-btn {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #265484;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-project-btn:hover {
+    background-color: #20456c;
+}
+
+.action-panel {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 10;
+}
+
+.action-panel button {
+    display: block;
+    width: 100%;
+    padding: 5px 10px;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+.action-panel button:hover {
+    background-color: #f0f0f0;
+}
+/* 项目列表中的星标按钮 */
+.project-list li button {
+    border: none;
+    background: none;
+    color: gold;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 0;
+}
+
+.project-list li button:hover {
+    color: orange;
+}
+
+/* 其他样式保持不变 */
+/* TaskBoard.css */
+
+.task {
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.add-column input {
+    margin-right: 10px;
+}
+
+.task-detail-popup {
+    position: fixed;
+    top: 20%;
+    left: 30%;
+    width: 40%;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.task-detail-popup h4 {
+    margin-top: 0;
+}
+
+.task-detail-popup label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.task-detail-popup input,
+.task-detail-popup textarea {
+    width: 100%;
+}
+
+.task-detail-popup button {
+    margin-top: 10px;
+}
+
+.task-details-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    z-index: 1000;
+}
+
+.task-details-modal h3 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.task-details-modal div {
+    margin-bottom: 15px;
+}
+
+.task-details-modal label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.task-details-modal input[type="text"],
+.task-details-modal textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.task-details-modal input[type="file"] {
+    display: block;
+    margin-top: 10px;
+}
+
+.task-details-modal button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.task-details-modal button:hover {
+    background-color: #45a049;
+}
+
+.task-details-modal a {
+    color: #007bff;
+    text-decoration: none;
+    display: block;
+    margin-top: 10px;
+}
+
+.task-details-modal a:hover {
+    text-decoration: underline;
 }
