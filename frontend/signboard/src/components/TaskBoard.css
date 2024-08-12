@@ -135,7 +135,7 @@
     gap: 20px;
     padding-right: 10px; /* 添加一些内边距，以便滚动条不会遮挡内容 */
     padding-bottom: 0;
-    
+    align-items: flex-start; /* 保证列从顶部开始对齐 */
 }
 
 .column {
@@ -147,6 +147,7 @@
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
+    flex-grow: 0; /* 使列不扩展以填充空间 */
 }
 
 .column-header {
@@ -199,6 +200,8 @@
     max-width: 40%;         /* 根据需要设置最大宽度 */
     overflow: hidden;         /* 隐藏超出容器的内容 */
     text-overflow: ellipsis;  /* 用省略号代替溢出的文本 */
+    top: 6px;
+    left: 6px;
 }
 
 
@@ -344,6 +347,17 @@
 }
 
 
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px); /* 这里可以调整模糊程度 */
+    z-index: 999; /* 保证在最上层 */
+}
+
 .task-details-modal {
     position: fixed;
     top: 50%;
@@ -353,7 +367,7 @@
     border-radius: 20px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 400px;
+    width: 600px;
     z-index: 1000;
 }
 
@@ -364,7 +378,7 @@
 }
 
 .task-details-modal div {
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 .task-details-modal label {
@@ -377,7 +391,11 @@
 .task-details-modal textarea {
     width: 100%;
     border: 1px solid #ccc;
-    border-radius: 20px;
+    border-radius: 5px;
+    max-height: 150px;
+    max-width: 100%;
+    color: #333;
+    
 }
 
 .task-details-modal input[type="file"] {
