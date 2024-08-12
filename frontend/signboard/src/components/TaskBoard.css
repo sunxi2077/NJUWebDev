@@ -25,7 +25,7 @@
 }
 
 .navbar button {
-    border-radius: 40px;
+    border-radius: 20px;
     margin: 10px;
 
 }
@@ -35,6 +35,7 @@
     display: flex;
     flex: 1;
     padding-top: 60px;
+    overflow-x: auto;
 }
 
 /* New Section - Left Side */
@@ -47,8 +48,20 @@
     position: fixed;
     left: 0;
     height: 90%;
+}
 
+.new-section button {
+    padding: 10px;
+    background-color: #0f1e2d;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
 
+.new-section button:hover {
+    border: #e6bc24 solid 1px;
 }
 
 .project-list {
@@ -60,7 +73,7 @@
 .project-list li {
     padding: 10px;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 20px;
     margin-bottom: 5px;
     color: #e6bc24;
     display: block;
@@ -80,9 +93,11 @@
     flex-direction: column;
     box-sizing: border-box;
     position: fixed;
+    top: 80px;
     right: 0;
-    
-
+    bottom: 0;
+    overflow-x: auto; 
+    overflow-y: hidden;
 }
 
 .add-column {
@@ -95,7 +110,7 @@
     padding: 10px;
     margin-right: 10px;
     border: 1px solid #ccc;
-    border-radius: 40px;
+    border-radius: 20px;
     color: #333;
 }
 
@@ -104,7 +119,7 @@
     background-color: #265484;
     color: white;
     border: none;
-    border-radius: 40px;
+    border-radius:20px;
     cursor: pointer;
 }
 
@@ -115,18 +130,19 @@
 
 /* Columns */
 .columns {
+    overflow: visible;
     display: flex;
     gap: 20px;
-    overflow-x: auto;
-    overflow-y: auto; /* 启用垂直滚动条 */
     padding-right: 10px; /* 添加一些内边距，以便滚动条不会遮挡内容 */
+    padding-bottom: 0;
+    
 }
 
 .column {
     background-color: #fff;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 30px;
+    border-radius: 20px;
     width: 250px;
     flex-shrink: 0;
     display: flex;
@@ -155,19 +171,51 @@
 /* Tasks */
 .tasks {
     margin-top: 10px;
-    flex-grow: 1;
     max-height: 450px; /* 设置最大高度 */
     overflow-y: auto; /* 启用垂直滚动 */
     padding-right: 10px; /* 防止滚动条遮挡内容 */
+    display: row;
+    align-items: center; /* 垂直居中对齐 */
+    justify-content: space-between; /* 确保文本和按钮在行内两端对齐 */
+    padding: 5px; /* 根据需要设置内边距 */
+    border-bottom: 1px solid #ddd; /* 可选：为每个任务添加底部边框 */
+}
+
+
+.tasks .tasks {
+    background: none; /* 移除默认按钮背景 */
+    border: none; /* 移除按钮边框 */
+    cursor: pointer; /* 鼠标悬停时显示手型指针 */
+    font-size: 24px; /* 调整三个点的大小 */
+    color: #333; /* 设置三个点的颜色 */
+    border-radius: 50%; /* 可选：将按钮变成圆形 */
+    position: relative;
+    margin-top: 0;
+    padding: 0;
+}
+
+.tasks .task-name {
+    position: relative;
+    max-width: 40%;         /* 根据需要设置最大宽度 */
+    overflow: hidden;         /* 隐藏超出容器的内容 */
+    text-overflow: ellipsis;  /* 用省略号代替溢出的文本 */
+}
+
+
+.task-name {
+    flex-grow: 1; /* 让任务名称占据剩余的水平空间 */
+    text-align: left; /* 任务名称左对齐 */
+    margin-right: 120px; /* 调整任务名称与按钮之间的距离 */
 }
 
 .task {
     background-color: #eee;
     padding: 10px;
-    border-radius: 4px;
+    border-radius: 20px;
     margin-bottom: 10px;
     border: 1px solid #ddd;
     color: #333;
+    display: flex;
 }
 
 /* Dark Mode and Light Mode Colors */
@@ -192,7 +240,7 @@
     background-color: #265484;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 20px;
     cursor: pointer;
 }
 
@@ -233,11 +281,54 @@
     cursor: pointer;
     margin-left: 10px;
     padding: 0;
+    ;
+}
+
+
+.project-list li {
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 20px;
+    margin-bottom: 5px;
+    color: #e6bc24;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+
+.project-list span{
+    white-space: nowrap; /* 不换行 */
+    overflow: hidden; /* 隐藏超出的文本 */
+    text-overflow: ellipsis; /* 用省略号显示溢出部分 */
+    width: 100%; /* 限制最大宽度 */
+}
+
+.project-list li:hover {
+    background-color: #265484;
+    color: white;
+    border-radius: 20px;
+}
+
+.project-list li button {
+    border: none;
+    background: none;
+    color: gold;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 2px;
+    margin-bottom: 0;
+    position: relative;
+    right: 0;
 }
 
 .project-list li button:hover {
     color: orange;
 }
+
+
 
 /* 其他样式保持不变 */
 /* TaskBoard.css */
@@ -252,43 +343,14 @@
     margin-right: 10px;
 }
 
-.task-detail-popup {
-    position: fixed;
-    top: 20%;
-    left: 30%;
-    width: 40%;
-    background: white;
-    border: 1px solid #ddd;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-}
-
-.task-detail-popup h4 {
-    margin-top: 0;
-}
-
-.task-detail-popup label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-.task-detail-popup input,
-.task-detail-popup textarea {
-    width: 100%;
-}
-
-.task-detail-popup button {
-    margin-top: 10px;
-}
 
 .task-details-modal {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
-    border-radius: 8px;
+    background-color: #333;
+    border-radius: 20px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 400px;
@@ -298,7 +360,7 @@
 .task-details-modal h3 {
     margin-top: 0;
     font-size: 24px;
-    color: #333;
+    color: #f7f7f7;
 }
 
 .task-details-modal div {
@@ -314,36 +376,26 @@
 .task-details-modal input[type="text"],
 .task-details-modal textarea {
     width: 100%;
-    padding: 8px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 20px;
 }
 
 .task-details-modal input[type="file"] {
     display: block;
     margin-top: 10px;
+    cursor: pointer;
 }
 
 .task-details-modal button {
-    background-color: #4CAF50;
+    background-color: #265484;
     color: white;
     padding: 10px 15px;
     border: none;
-    border-radius: 4px;
+    border-radius: 20px;
     cursor: pointer;
 }
 
 .task-details-modal button:hover {
-    background-color: #45a049;
+    background-color: #20456c;
 }
 
-.task-details-modal a {
-    color: #007bff;
-    text-decoration: none;
-    display: block;
-    margin-top: 10px;
-}
-
-.task-details-modal a:hover {
-    text-decoration: underline;
-}

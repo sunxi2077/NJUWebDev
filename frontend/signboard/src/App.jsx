@@ -6,30 +6,6 @@ import Register from './components/Register.jsx'
 import Home from './components/Home.jsx'
 import TaskBoard from './components/TaskBoard.jsx' 
 
-// function App() {
-//   // const [count, setCount] = useState(0)
-//   return (
-//     <>
-//       <div>
-//         <a href="https://github.com" target="_blank">
-//           <img src={task} className="logo" alt="Board logo" />
-//         </a>
-//       </div>
-//       <h1>Welcome to Your Board</h1>
-//       <div className="card">
-//         <button >
-//           Click to Log In
-//         </button>
-//       </div>
-//       <p className="read-the-docs">
-//         {/* 下方小字注释部分 */}
-//       </p>
-//     </>
-//   )
-// }
-
-// export default App
-
 const App = () => {
   return (
     <Router>
