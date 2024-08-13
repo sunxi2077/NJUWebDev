@@ -13,13 +13,16 @@ const TaskBoard = () => {
     const [newColumnTitle, setNewColumnTitle] = useState('');
     const [showActionPanel, setShowActionPanel] = useState(null);
     const [taskDetails, setTaskDetails] = useState({ visible: false, columnIndex: null, taskIndex: null });
-    const [attachment, setAttachment] = useState(null);
     const [showProjectMenu, setShowProjectMenu] = useState(null);
+    
 
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (showProjectMenu !== null && !event.target.closest('.action-panel')) {
                 setShowProjectMenu(null);
+            }
+            if (showActionPanel !== null && !event.target.closest('.action-panel')) {
+                setShowActionPanel(null);
             }
         };
 
@@ -27,7 +30,7 @@ const TaskBoard = () => {
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [showProjectMenu]);//实现了操作菜单的点击外部关闭，但是这一条其实只配置了showProjectMenu的监听，其他的监听没有配置
+    }, [showProjectMenu, showActionPanel]);
 
     const selectProject = (projectId) => {
         setSelectedProjectId(projectId);
@@ -68,45 +71,10 @@ const TaskBoard = () => {
         }
     };
 
-    const handleTaskDetailChange = (e) => {
-        const { name, value } = e.target;
-        setProjects(prevProjects =>
-            prevProjects.map(project => {
-                if (project.id === selectedProjectId) {
-                    return {
-                        ...project,
-                        columns: project.columns.map((column, index) => {
-                            if (index === taskDetails.columnIndex) {
-                                return {
-                                    ...column,
-                                    tasks: column.tasks.map((task, taskIndex) => {
-                                        if (taskIndex === taskDetails.taskIndex) {
-                                            return {
-                                                ...task,
-                                                [name]: value,
-                                            };
-                                        }
-                                        return task;
-                                    })
-                                };
-                            }
-                            return column;
-                        })
-                    };
-                }
-                return project;
-            })
-        );
-    };
-    
-
-
     const handleAttachmentUpload = (e) => {
         const file = e.target.files[0];
         if (file) {
             const url = URL.createObjectURL(file);
-            setAttachment(url);
-            // Update the task's attachments array
             setProjects(projects.map(project =>
                 project.id === selectedProjectId
                     ? {
@@ -140,8 +108,12 @@ const TaskBoard = () => {
                 }
                 : project
         ));
-        setShowActionPanel(null);
+        setShowActionPanel(null); // 完成操作后关闭 action-panel
     };
+
+    
+        
+
 
     const addNewProject = () => {
         const newProjectName = prompt('Enter new project name:');
@@ -177,6 +149,35 @@ const TaskBoard = () => {
         }
     };
 
+    const saveTaskDetails = () => {
+        setProjects(projects.map(project =>
+            project.id === selectedProjectId
+                ? {
+                    ...project,
+                    columns: project.columns.map((column, cIndex) =>
+                        cIndex === taskDetails.columnIndex
+                            ? {
+                                ...column,
+                                tasks: column.tasks.map((task, tIndex) =>
+                                    tIndex === taskDetails.taskIndex
+                                        ? {
+                                            ...task,
+                                            name: document.getElementById('task-name').value,
+                                            rating: document.getElementById('task-rating').value,
+                                            description: document.getElementById('task-description').value,
+                                            url: document.getElementById('url').value
+                                        }
+                                        : task
+                                )
+                            }
+                            : column
+                    )
+                }
+                : project
+        ));
+        setTaskDetails({ visible: false, columnIndex: null, taskIndex: null });
+    };
+
     const currentProject = projects.find(p => p.id === selectedProjectId);
 
     return (
@@ -207,9 +208,9 @@ const TaskBoard = () => {
                                     </button>
                                     <button onClick={() => setShowProjectMenu(project.id)}>⋮</button>
                                     {showProjectMenu === project.id && (
-                                        <div className="action-panel">
-                                            <button onClick={() => renameProject(project.id)}>Rename Project</button>
-                                            <button onClick={() => deleteTask(project.id)}>Delete Task</button>
+                                        <div className="project-action-panel">
+                                            <button onClick={() => renameProject(project.id)} >重命名项目</button>
+                                            <button onClick={() => deleteTask(project.id)}>删除项目</button>
                                         </div>
                                     )}
                                 </li>
@@ -241,7 +242,7 @@ const TaskBoard = () => {
                                                 <button onClick={() => setShowActionPanel(index)}>⋮</button>
                                             </div>
                                             {showActionPanel === index && (
-                                                <div className="action-panel">
+                                                <div className="action-panel" >
                                                     <button onClick={() => archiveColumn(index)}>归档列表</button>
                                                     <button onClick={() => archiveColumn(index, true)}>归档所有任务</button>
                                                 </div>
@@ -260,78 +261,48 @@ const TaskBoard = () => {
                                 ))}
                             </div>
 
+                            {taskDetails.visible && (
+                                <div className="modal">
+                                    <div className="modal-content">
+                                        <h3>Task Details</h3>
+                                        <label htmlFor="task-name">Task Name:</label>
+                                        <input
+                                            id="task-name"
+                                            type="text"
+                                            defaultValue={currentProject.columns[taskDetails.columnIndex].tasks[taskDetails.taskIndex].name}
+                                        />
+                                        <label htmlFor="task-rating">Remark:</label>
+                                        <textarea
+                                            id="task-rating"
+                                            defaultValue={currentProject.columns[taskDetails.columnIndex].tasks[taskDetails.taskIndex].rating}
+                                        />
+                                        <label htmlFor="task-description">Description:</label>
+                                        <textarea
+                                            id="task-description"
+                                            defaultValue={currentProject.columns[taskDetails.columnIndex].tasks[taskDetails.taskIndex].description}
+                                        ></textarea>
+                                        <label htmlFor="task-attachment">Attachment:</label>
+                                        <input
+                                            type='text'
+                                            id="url"
+                                            defaultValue={currentProject.columns[taskDetails.columnIndex].tasks[taskDetails.taskIndex].url}
+                                        />
+                                        <input type="file" id="task-attachment" onChange={handleAttachmentUpload} />
+                                        <ul>
+                                            {currentProject.columns[taskDetails.columnIndex].tasks[taskDetails.taskIndex].attachments.map((attachment, index) => (
+                                                <li key={index}><a href={attachment} download>Download Attachment</a></li>
+                                            ))}
+                                        </ul>
+                                        <button onClick={saveTaskDetails}>Save</button>
+                                        <button onClick={() => setTaskDetails({ visible: false, columnIndex: null, taskIndex: null })}>Close</button>
+                                    </div>
+                                </div>
+                            )}
                         </>
                     ) : (
-                        <p>请选择一个项目来查看看板。</p>
+                        <p>Please select a project to view its details.</p>
                     )}
                 </div>
-
-
-                {taskDetails.visible && selectedProjectId !== null && taskDetails.columnIndex !== null && taskDetails.taskIndex !== null && (
-                    <>
-                        {/* 背景遮罩层 */}
-                        <div className="modal-overlay" onClick={() => setTaskDetails({ visible: false, columnIndex: null, taskIndex: null })}></div>
-
-                        {/* 弹窗 */}
-                        <div className="task-details-modal">
-                            <h3>任务详情</h3>
-                            {/* 任务名称 */}
-                            <div className="task-details-field">
-                                <label htmlFor="task-name">任务名称:</label>
-                                <input
-                                    type="text"
-                                    id="task-name"
-                                    name="taskname"
-                                    value={projects[selectedProjectId]?.columns[taskDetails.columnIndex]?.tasks[taskDetails.taskIndex]}
-                                    onChange={handleTaskDetailChange}
-                                />
-                            </div>
-
-                            
-                            <div className="task-details-field">
-                                <label htmlFor="task-rating">评论:</label>
-                                <textarea
-                                    id="task-rating"
-                                    name="rating"
-                                    value={projects[selectedProjectId]?.columns[taskDetails.columnIndex]?.tasks[taskDetails.taskIndex]?.rating}
-                                    onChange={handleTaskDetailChange}
-                                />
-                            </div>
-                            {/* 描述 */}
-                            <div className="task-details-field">
-                                <label htmlFor="task-description">描述:</label>
-                                <textarea
-                                    id="task-description"
-                                    name="description"
-                                    value={projects[selectedProjectId]?.columns[taskDetails.columnIndex]?.tasks[taskDetails.taskIndex]?.description}
-                                    onChange={handleTaskDetailChange}
-                                />
-                            </div>
-                            
-                            
-                            {/* 附件 */}
-                            <div className="task-details-field">
-                                <label htmlFor="task-attachment">附件:</label>
-                                <input
-                                    type="file"
-                                    id="task-attachment"
-                                    onChange={handleAttachmentUpload}
-                                />
-                                {attachment && (
-                                    <div className="attachment-download">
-                                        <a href={attachment} download>下载附件</a>
-                                    </div>
-                                )}
-                            </div>
-                            {/* 关闭按钮 */}
-                            <button className="close-modal-btn" onClick={() => setTaskDetails({ visible: false, columnIndex: null, taskIndex: null })}>
-                                保存并关闭
-                            </button>
-                        </div>
-                    </>
-
-
-                )}
             </div>
         </div>
     );

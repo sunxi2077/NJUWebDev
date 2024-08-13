@@ -6,8 +6,7 @@ export default {
   koa: {
     port: 7001,
   },
-  webSocket:{
-    port: 3000
-  }
-  
+  webSocket: {
+    port: 3000,
+  },
 } as MidwayConfig;

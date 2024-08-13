@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { OnWSConnection, OnWSMessage, WSController } from '@midwayjs/core';
 import { Context } from '@midwayjs/ws';
 import * as http from 'http';
@@ -23,4 +24,3 @@ export class WebSocket {
         });
     }
 }
-

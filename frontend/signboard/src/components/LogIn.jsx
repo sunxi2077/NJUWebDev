@@ -1,22 +1,46 @@
-import  { useState } from 'react';
+import  { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './LogIn.css';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [socket, setSocket] = useState(null);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        // 建立 WebSocket 连接
+        const ws = new WebSocket('ws://localhost:3000');
+        setSocket(ws);
+
+        ws.onmessage = (event) => {
+            const response = JSON.parse(event.data);
+            if (response.success) {
+                navigate('/taskboard');
+            } else {
+                alert('Invalid email or password');
+            }
+        };
+
+        ws.onerror = (error) => {
+            console.error('WebSocket error:', error);
+        };
+
+        ws.onclose = () => {
+            console.log('WebSocket connection closed');
+        };
+
+        return () => {
+            ws.close();
+        };
+    }, [navigate]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const validEmail = "123456@163.com"
-        const validPassword = "123456"
-        if (email === validEmail && password === validPassword) {
-            navigate('/taskboard')
-        } else {
-            alert('Invalid email or password');
-        }
-        // 在此处添加表单提交逻辑，例如通过 API 验证用户凭据
+
+        // 发送登录请求
+        const loginData = { email, password };
+        socket.send(JSON.stringify({ type: 'login', data: loginData }));
+
         console.log('Email:', email, 'Password:', password);
     };
 
@@ -45,9 +69,6 @@ const Login = () => {
                     />
                 </div>
                 <button type="submit" className="login-button">Log In</button>
-                <div className="register-link">
-                    Don`t have an account? <a href="/register">Register here</a>
-                </div>
             </form>
         </div>
     );

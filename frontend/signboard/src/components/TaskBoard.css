@@ -96,7 +96,7 @@
     top: 80px;
     right: 0;
     bottom: 0;
-    overflow-x: auto; 
+    overflow-x: auto;
     overflow-y: hidden;
 }
 
@@ -119,7 +119,7 @@
     background-color: #265484;
     color: white;
     border: none;
-    border-radius:20px;
+    border-radius: 20px;
     cursor: pointer;
 }
 
@@ -133,9 +133,11 @@
     overflow: visible;
     display: flex;
     gap: 20px;
-    padding-right: 10px; /* 添加一些内边距，以便滚动条不会遮挡内容 */
+    padding-right: 10px;
+    /* 添加一些内边距，以便滚动条不会遮挡内容 */
     padding-bottom: 0;
-    align-items: flex-start; /* 保证列从顶部开始对齐 */
+    align-items: flex-start;
+    /* 保证列从顶部开始对齐 */
 }
 
 .column {
@@ -147,7 +149,9 @@
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    flex-grow: 0; /* 使列不扩展以填充空间 */
+    flex-grow: 0;
+    /* 使列不扩展以填充空间 */
+    position: relative;
 }
 
 .column-header {
@@ -166,30 +170,43 @@
 }
 
 .column-menu button:hover {
-    color:red;
+    color: red;
 }
 
 /* Tasks */
 .tasks {
     margin-top: 10px;
-    max-height: 450px; /* 设置最大高度 */
-    overflow-y: auto; /* 启用垂直滚动 */
-    padding-right: 10px; /* 防止滚动条遮挡内容 */
+    max-height: 450px;
+    /* 设置最大高度 */
+    overflow-y: auto;
+    /* 启用垂直滚动 */
+    padding-right: 10px;
+    /* 防止滚动条遮挡内容 */
     display: row;
-    align-items: center; /* 垂直居中对齐 */
-    justify-content: space-between; /* 确保文本和按钮在行内两端对齐 */
-    padding: 5px; /* 根据需要设置内边距 */
-    border-bottom: 1px solid #ddd; /* 可选：为每个任务添加底部边框 */
+    align-items: center;
+    /* 垂直居中对齐 */
+    justify-content: space-between;
+    /* 确保文本和按钮在行内两端对齐 */
+    padding: 5px;
+    /* 根据需要设置内边距 */
+    border-bottom: 1px solid #ddd;
+    /* 可选：为每个任务添加底部边框 */
 }
 
 
 .tasks .tasks {
-    background: none; /* 移除默认按钮背景 */
-    border: none; /* 移除按钮边框 */
-    cursor: pointer; /* 鼠标悬停时显示手型指针 */
-    font-size: 24px; /* 调整三个点的大小 */
-    color: #333; /* 设置三个点的颜色 */
-    border-radius: 50%; /* 可选：将按钮变成圆形 */
+    background: none;
+    /* 移除默认按钮背景 */
+    border: none;
+    /* 移除按钮边框 */
+    cursor: pointer;
+    /* 鼠标悬停时显示手型指针 */
+    font-size: 24px;
+    /* 调整三个点的大小 */
+    color: #333;
+    /* 设置三个点的颜色 */
+    border-radius: 50%;
+    /* 可选：将按钮变成圆形 */
     position: relative;
     margin-top: 0;
     padding: 0;
@@ -197,18 +214,24 @@
 
 .tasks .task-name {
     position: relative;
-    max-width: 40%;         /* 根据需要设置最大宽度 */
-    overflow: hidden;         /* 隐藏超出容器的内容 */
-    text-overflow: ellipsis;  /* 用省略号代替溢出的文本 */
+    max-width: 40%;
+    /* 根据需要设置最大宽度 */
+    overflow: hidden;
+    /* 隐藏超出容器的内容 */
+    text-overflow: ellipsis;
+    /* 用省略号代替溢出的文本 */
     top: 6px;
     left: 6px;
 }
 
 
 .task-name {
-    flex-grow: 1; /* 让任务名称占据剩余的水平空间 */
-    text-align: left; /* 任务名称左对齐 */
-    margin-right: 120px; /* 调整任务名称与按钮之间的距离 */
+    flex-grow: 1;
+    /* 让任务名称占据剩余的水平空间 */
+    text-align: left;
+    /* 任务名称左对齐 */
+    margin-right: 120px;
+    /* 调整任务名称与按钮之间的距离 */
 }
 
 .task {
@@ -251,15 +274,36 @@
     background-color: #20456c;
 }
 
-.action-panel {
+
+.project-action-panel {
+    color: #e6bc24;
     position: absolute;
-    top: 40px;
+    left: 0px;
+    top: 60px;
+    width: 120px;
     right: 0;
-    background-color: white;
-    border: 1px solid #ccc;
+    background-color: #333;
+    border: none;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     padding: 10px;
-    z-index: 10;
+    z-index: 1000;
+    border-radius: 20px;
+
+}
+
+.action-panel {
+    color: #e6bc24;
+    position: absolute;
+    left: 120px;
+    top: 60px;
+    width: 120px;
+    right: 0;
+    background-color: #333;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 1000;
+    border-radius: 20px;
 }
 
 .action-panel button {
@@ -270,11 +314,15 @@
     background: none;
     text-align: left;
     cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: inherit;
 }
 
 .action-panel button:hover {
-    background-color: #f0f0f0;
+    background-color: #265484;
 }
+
 /* 项目列表中的星标按钮 */
 .project-list li button {
     border: none;
@@ -301,11 +349,15 @@
 }
 
 
-.project-list span{
-    white-space: nowrap; /* 不换行 */
-    overflow: hidden; /* 隐藏超出的文本 */
-    text-overflow: ellipsis; /* 用省略号显示溢出部分 */
-    width: 100%; /* 限制最大宽度 */
+.project-list span {
+    white-space: nowrap;
+    /* 不换行 */
+    overflow: hidden;
+    /* 隐藏超出的文本 */
+    text-overflow: ellipsis;
+    /* 用省略号显示溢出部分 */
+    width: 100%;
+    /* 限制最大宽度 */
 }
 
 .project-list li:hover {
@@ -347,18 +399,22 @@
 }
 
 
-.modal-overlay {
+/* Overlay background */
+.modal {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px); /* 这里可以调整模糊程度 */
-    z-index: 999; /* 保证在最上层 */
+    backdrop-filter: blur(5px);
+    /* Adjust the blur level if needed */
+    z-index: 999;
+    /* Ensure it's at the top layer */
 }
 
-.task-details-modal {
+/* Modal container */
+.modal-content {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -371,49 +427,58 @@
     z-index: 1000;
 }
 
-.task-details-modal h3 {
+.modal-content h3 {
     margin-top: 0;
     font-size: 24px;
     color: #f7f7f7;
 }
 
-.task-details-modal div {
-    margin-bottom: 30px;
-}
-
-.task-details-modal label {
+.modal-content label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
+    color: #f7f7f7;
 }
 
-.task-details-modal input[type="text"],
-.task-details-modal textarea {
+.modal-content input[type="text"],
+.modal-content textarea {
     width: 100%;
     border: 1px solid #ccc;
     border-radius: 5px;
+    padding: 10px;
     max-height: 150px;
-    max-width: 100%;
+    max-width: 580px;
     color: #333;
-    
+    margin-bottom: 15px;
+
 }
 
-.task-details-modal input[type="file"] {
+.modal-content input[type="file"] {
     display: block;
     margin-top: 10px;
     cursor: pointer;
 }
 
-.task-details-modal button {
+.modal-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.modal-content ul li {
+    margin: 5px 0;
+}
+
+.modal-content button {
     background-color: #265484;
     color: white;
     padding: 10px 15px;
     border: none;
     border-radius: 20px;
     cursor: pointer;
+    margin-right: 10px;
 }
 
-.task-details-modal button:hover {
+.modal-content button:hover {
     background-color: #20456c;
 }
-
