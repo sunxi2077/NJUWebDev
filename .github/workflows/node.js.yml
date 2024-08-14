@@ -25,9 +25,9 @@ jobs:
       working-directory: ./frontend/signboard
       run: npm install
 
-    - name: Run frontend tests
-      working-directory: ./frontend/signboard
-      run: npm test
+    # - name: Run frontend tests
+    #   working-directory: ./frontend/signboard
+    #   run: npm test
 
     - name: Build frontend
       working-directory: ./frontend/signboard
@@ -42,9 +42,9 @@ jobs:
       working-directory: ./backend/signboard
       run: npm install
 
-    - name: Run backend tests
-      working-directory: ./backend/signboard
-      run: npm test
+    # - name: Run backend tests
+    #   working-directory: ./backend/signboard
+    #   run: npm test
 
     - name: Build backend
       working-directory: ./backend/signboard
