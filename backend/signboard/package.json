@@ -1,5 +1,5 @@
 {
-  "name": "my-midway-project",
+  "name": "backend",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -49,4 +49,5 @@
   },
   "author": "anonymous",
   "license": "MIT"
+
 }
