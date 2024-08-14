@@ -5,8 +5,46 @@
     display: flex;
     flex-direction: column;
     position: relative;
-
 }
+
+.backtohome {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #20456c;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 22px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.backtohome span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.backtohome span:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.backtohome:hover span {
+    padding-right: 25px;
+}
+
+.backtohome:hover span:after {
+    opacity: 1;
+    right: 0;
+} 
 
 /* Navigation Bar */
 .navbar {

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import './TaskBoard.css';
+import { useNavigate } from 'react-router-dom';
 
 const TaskBoard = () => {
     const [projects, setProjects] = useState([
@@ -18,7 +19,7 @@ const TaskBoard = () => {
 
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if (showProjectMenu !== null && !event.target.closest('.action-panel')) {
+            if (showProjectMenu !== null && !event.target.closest('.project-action-panel')) {
                 setShowProjectMenu(null);
             }
             if (showActionPanel !== null && !event.target.closest('.action-panel')) {
@@ -32,6 +33,10 @@ const TaskBoard = () => {
         };
     }, [showProjectMenu, showActionPanel]);
 
+    const navigate = useNavigate();
+    const goToHome = () => {
+        navigate('/');  // 跳转到主页面
+        };
     const selectProject = (projectId) => {
         setSelectedProjectId(projectId);
     };
@@ -136,11 +141,13 @@ const TaskBoard = () => {
                 project.id === projectId ? { ...project, name: newName } : project
             ));
         }
+        setShowProjectMenu(null);
     };
 
     const deleteTask = (projectId) => {
         setProjects(projects.filter(project => project.id !== projectId));
         setSelectedProjectId(null);
+        setShowProjectMenu(null);
     };
 
     const handleTaskDetails = (columnIndex, taskIndex) => {
@@ -183,7 +190,7 @@ const TaskBoard = () => {
     return (
         <div className="taskboard-container">
             <nav className="navbar">
-                <h2>Task Board</h2>
+                <button className="backtohome" onClick={goToHome}><span>TaskBoard </span></button>
                 <div className="nav-options">
                     <button onClick={() => { setSelectedProjectId(null); setViewMode('all'); }}>All Projects</button>
                     <button onClick={() => { setSelectedProjectId(null); setViewMode('important'); }}>Important Projects</button>

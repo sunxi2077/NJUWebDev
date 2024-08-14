@@ -9,17 +9,19 @@ const Login = () => {
 
     useEffect(() => {
         // 建立 WebSocket 连接
-        const ws = new WebSocket('ws://localhost:3000');
+        const ws = new WebSocket('ws://localhost:3000/login');
         setSocket(ws);
 
         ws.onmessage = (event) => {
             const response = JSON.parse(event.data);
+            console.log('Received response:', response); // 记录收到的响应
             if (response.success) {
                 navigate('/taskboard');
             } else {
                 alert('Invalid email or password');
             }
         };
+        
 
         ws.onerror = (error) => {
             console.error('WebSocket error:', error);
@@ -53,6 +55,7 @@ const Login = () => {
                     <input
                         type="email"
                         id="email"
+                        placeholder="Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
@@ -63,12 +66,16 @@ const Login = () => {
                     <input
                         type="password"
                         id="password"
+                        placeholder="Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
                 </div>
                 <button type="submit" className="login-button">Log In</button>
+                <div className="register-link">
+                    Don`t have an account? <a href="/register">Register here</a>
+                </div>
             </form>
         </div>
     );

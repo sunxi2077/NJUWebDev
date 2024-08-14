@@ -1,0 +1,41 @@
+{
+    "userId": "user1",
+    "projects": [
+        {
+            "id": 1,
+            "name": "Project 1",
+            "isImportant": false,
+            "columns": [
+                {
+                    "title": "To Do",
+                    "tasks": [
+                        {
+                            "name": "Task 1",
+                            "description": "Description of Task 1",
+                            "rating": "High",
+                            "attachments": ["path/to/attachment1.jpg", "path/to/attachment2.pdf"],
+                            "url": "https://githun.com"
+                        },
+                        {
+                            "name": "Task 2",
+                            "description": "Description of Task 2",
+                            "rating": "Low",
+                            "attachments": [],
+                            "url": ""
+                        }
+                    ]
+                },
+                {
+                    "title": "In Progress",
+                    "tasks": []
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Project 2",
+            "isImportant": true,
+            "columns": []
+        }
+    ]
+}
