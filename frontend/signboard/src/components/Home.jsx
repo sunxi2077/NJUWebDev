@@ -23,7 +23,6 @@ const Home = () => {
                 </button>
             </div>
             <p className="read-the-docs">
-                {/* 下方小字注释部分 */}
             </p>
         </div>
     );

@@ -1,4 +1,4 @@
-/* TaskBoard Container */
+
 .taskboard-container {
     font-family: Arial, sans-serif;
     height: 100vh;
@@ -46,7 +46,6 @@
     right: 0;
 } 
 
-/* Navigation Bar */
 .navbar {
     background-color: var(--nav-color);
     color: #fff;
@@ -68,15 +67,12 @@
 
 }
 
-/* Main Content Area */
 .main-content {
     display: flex;
     flex: 1;
     padding-top: 60px;
     overflow-x: auto;
 }
-
-/* New Section - Left Side */
 .new-section {
     width: 13%;
     padding: 20px;
@@ -123,7 +119,6 @@
     border-radius: 20px;
 }
 
-/* Taskboard Content - Right Side */
 .taskboard-content {
     width: 87%;
     padding: 10px;
@@ -172,10 +167,8 @@
     display: flex;
     gap: 20px;
     padding-right: 10px;
-    /* 添加一些内边距，以便滚动条不会遮挡内容 */
     padding-bottom: 0;
     align-items: flex-start;
-    /* 保证列从顶部开始对齐 */
 }
 
 .column {
@@ -188,7 +181,6 @@
     display: flex;
     flex-direction: column;
     flex-grow: 0;
-    /* 使列不扩展以填充空间 */
     position: relative;
 }
 
@@ -215,36 +207,23 @@
 .tasks {
     margin-top: 10px;
     max-height: 450px;
-    /* 设置最大高度 */
     overflow-y: auto;
-    /* 启用垂直滚动 */
     padding-right: 10px;
-    /* 防止滚动条遮挡内容 */
     display: row;
     align-items: center;
-    /* 垂直居中对齐 */
     justify-content: space-between;
-    /* 确保文本和按钮在行内两端对齐 */
     padding: 5px;
-    /* 根据需要设置内边距 */
     border-bottom: 1px solid #ddd;
-    /* 可选：为每个任务添加底部边框 */
 }
 
 
 .tasks .tasks {
     background: none;
-    /* 移除默认按钮背景 */
     border: none;
-    /* 移除按钮边框 */
     cursor: pointer;
-    /* 鼠标悬停时显示手型指针 */
     font-size: 24px;
-    /* 调整三个点的大小 */
     color: #333;
-    /* 设置三个点的颜色 */
     border-radius: 50%;
-    /* 可选：将按钮变成圆形 */
     position: relative;
     margin-top: 0;
     padding: 0;
@@ -253,11 +232,8 @@
 .tasks .task-name {
     position: relative;
     max-width: 40%;
-    /* 根据需要设置最大宽度 */
     overflow: hidden;
-    /* 隐藏超出容器的内容 */
     text-overflow: ellipsis;
-    /* 用省略号代替溢出的文本 */
     top: 6px;
     left: 6px;
 }
@@ -265,11 +241,8 @@
 
 .task-name {
     flex-grow: 1;
-    /* 让任务名称占据剩余的水平空间 */
     text-align: left;
-    /* 任务名称左对齐 */
     margin-right: 120px;
-    /* 调整任务名称与按钮之间的距离 */
 }
 
 .task {
@@ -282,7 +255,6 @@
     display: flex;
 }
 
-/* Dark Mode and Light Mode Colors */
 :root {
     --nav-color: #272626F5;
 }
@@ -389,13 +361,9 @@
 
 .project-list span {
     white-space: nowrap;
-    /* 不换行 */
     overflow: hidden;
-    /* 隐藏超出的文本 */
     text-overflow: ellipsis;
-    /* 用省略号显示溢出部分 */
     width: 100%;
-    /* 限制最大宽度 */
 }
 
 .project-list li:hover {
@@ -422,10 +390,6 @@
 }
 
 
-
-/* 其他样式保持不变 */
-/* TaskBoard.css */
-
 .task {
     border: 1px solid #ddd;
     margin-bottom: 5px;
@@ -437,7 +401,7 @@
 }
 
 
-/* Overlay background */
+
 .modal {
     position: fixed;
     top: 0;
@@ -446,12 +410,9 @@
     bottom: 0;
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(5px);
-    /* Adjust the blur level if needed */
     z-index: 999;
-    /* Ensure it's at the top layer */
 }
 
-/* Modal container */
 .modal-content {
     position: fixed;
     top: 50%;
